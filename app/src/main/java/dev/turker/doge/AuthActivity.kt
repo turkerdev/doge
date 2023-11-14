@@ -188,7 +188,7 @@ class AuthActivity : ComponentActivity() {
                 }
             }
             catch (e:Exception){
-                Toast.makeText(ctx,"Kayit olurken hata olustu", Toast.LENGTH_LONG).show()
+                Toast.makeText(ctx,"Kayit olurken hata olustu: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -203,7 +203,7 @@ class AuthActivity : ComponentActivity() {
                 }
             }
             catch (e:Exception){
-                Toast.makeText(ctx,"Giris yaparken hata olustu", Toast.LENGTH_LONG).show()
+                Toast.makeText(ctx,"Giris yaparken hata olustu: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }
