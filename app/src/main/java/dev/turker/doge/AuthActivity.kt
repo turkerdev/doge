@@ -91,6 +91,7 @@ class AuthActivity : ComponentActivity() {
                                 disabledIndicatorColor = Color.Transparent,
                                 errorIndicatorColor = Color.Transparent,
                                 unfocusedIndicatorColor = Color.Transparent,
+                                focusedLabelColor = Color.Gray,
                                 containerColor = Color.White
                             ),
                             value = email,
@@ -111,6 +112,7 @@ class AuthActivity : ComponentActivity() {
                                 disabledIndicatorColor = Color.Transparent,
                                 errorIndicatorColor = Color.Transparent,
                                 unfocusedIndicatorColor = Color.Transparent,
+                                focusedLabelColor = Color.Gray,
                                 containerColor = Color.White
                             ),
                             trailingIcon = {

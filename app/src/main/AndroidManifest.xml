@@ -31,6 +31,12 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.Doge">
         </activity>
+        <activity
+            android:name=".JobActivity"
+            android:exported="true"
+            android:label="Job"
+            android:theme="@style/Theme.Doge">
+        </activity>
     </application>
 
 </manifest>
