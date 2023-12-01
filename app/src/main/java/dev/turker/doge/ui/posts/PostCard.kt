@@ -1,6 +1,5 @@
-package dev.turker.doge.job
+package dev.turker.doge.ui.posts
 
-import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,14 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import dev.turker.doge.JobActivity
+import dev.turker.doge.model.Post
 import dev.turker.doge.ui.theme.Primary
 
 @Composable
-fun JobContent(job: JobDTO) {
-    val ctx = LocalContext.current
+fun PostCard(job: Post, onPostClick: () -> Unit) {
 
     Card(
         colors = CardDefaults.cardColors(
@@ -29,24 +26,20 @@ fun JobContent(job: JobDTO) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
-            .clickable(onClick = {
-                val intent = Intent(ctx, JobActivity::class.java)
-                intent.putExtra("jobId", job.id)
-                ctx.startActivity(intent)
-            })
+            .clickable(onClick = onPostClick)
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier.padding(10.dp)
         ) {
             Text(
-                text = job.kopekAdi,
+                text = job.dogName,
             )
             Text(
-                text = job.kopekCinsi,
+                text = job.dogRace,
             )
             Text(
-                text = job.aciklama,
+                text = job.description,
             )
         }
     }
