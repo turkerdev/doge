@@ -53,19 +53,21 @@ fun DogeApp() {
         }
 
         Scaffold(bottomBar = {
-            NavigationBar(containerColor = SurfaceContainer) {
-                DogeNavigation.forEach { route ->
-                    NavigationBarItem(
-                        colors = NavigationBarItemDefaults.colors(
-                            indicatorColor = Primary
-                        ),
-                        icon = { Icon(imageVector = route.icon, contentDescription = "") },
-                        label = { Text(route.text) },
-                        selected = currentRoute == route.path,
-                        onClick = {
-                            navActions.navigateTo(route.path)
-                        }
-                    )
+            if (!(currentRoute == DogeRoutes.ROOT_ROUTE || currentRoute == DogeRoutes.AUTH_ROUTE)) {
+                NavigationBar(containerColor = SurfaceContainer) {
+                    DogeNavigation.forEach { route ->
+                        NavigationBarItem(
+                            colors = NavigationBarItemDefaults.colors(
+                                indicatorColor = Primary
+                            ),
+                            icon = { Icon(imageVector = route.icon, contentDescription = "") },
+                            label = { Text(route.text) },
+                            selected = currentRoute == route.path,
+                            onClick = {
+                                navActions.navigateTo(route.path)
+                            }
+                        )
+                    }
                 }
             }
         })
