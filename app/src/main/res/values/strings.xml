@@ -11,4 +11,5 @@
     <string name="create_dogRace">Köpek Cinsi</string>
     <string name="create_note">Açıklama</string>
     <string name="create_send">Ekle</string>
+    <string name="create_photo">Fotoğraf ekle</string>
 </resources>

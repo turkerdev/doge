@@ -9,5 +9,6 @@ data class Post(
     @SerialName("kopek_adi") val dogName: String,
     @SerialName("kopek_cinsi") val dogRace: String,
     @SerialName("aciklama") val description: String,
-    @SerialName("user_id") val userId: String
+    @SerialName("user_id") val userId: String,
+    @SerialName("kopek_foto") val dogPhoto: String
 )

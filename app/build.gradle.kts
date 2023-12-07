@@ -69,8 +69,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.navigation:navigation-compose:2.7.4")
     implementation("io.ktor:ktor-client-android:2.3.5")
+    implementation("io.coil-kt:coil-compose:2.5.0")
     implementation(platform("io.github.jan-tennert.supabase:bom:1.4.4"))
     implementation("io.github.jan-tennert.supabase:gotrue-kt")
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
+    implementation("io.github.jan-tennert.supabase:storage-kt")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 }
