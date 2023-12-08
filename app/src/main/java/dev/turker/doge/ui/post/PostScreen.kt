@@ -19,9 +19,11 @@ import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import dev.turker.doge.R
 import dev.turker.doge.data.PostRepository
+import dev.turker.doge.supabaseClient
 import dev.turker.doge.ui.DogeNavigationActions
 import dev.turker.doge.ui.DogeRoutes
 import dev.turker.doge.ui.component.DogeButton
+import io.github.jan.supabase.gotrue.gotrue
 import kotlinx.coroutines.runBlocking
 
 @Composable
@@ -55,11 +57,13 @@ fun PostScreen(navActions: DogeNavigationActions, postId: String) {
             }
             Text(text = post.description)
         }
-        DogeButton(
-            onClick = { navActions.navigateTo(DogeRoutes.COMM_ROUTE.replace("{id}", postId)) },
-            modifier = Modifier.align(CenterHorizontally)
-        ) {
-            Text(text = stringResource(R.string.post_communicate))
+        if (post.userId != supabaseClient.gotrue.currentUserOrNull()?.id) {
+            DogeButton(
+                onClick = { navActions.navigateTo(DogeRoutes.COMM_ROUTE.replace("{id}", postId)) },
+                modifier = Modifier.align(CenterHorizontally)
+            ) {
+                Text(text = stringResource(R.string.post_communicate))
+            }
         }
     }
 }
