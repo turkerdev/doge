@@ -2,6 +2,7 @@ package dev.turker.doge.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -14,6 +15,7 @@ object DogeRoutes {
     const val POST_ROUTE = "post/{id}"
     const val COMM_ROUTE = "comm/{id}"
     const val CREATE_ROUTE = "create"
+    const val NOTIF_ROUTE = "notif"
 }
 
 data class DogeRoute(
@@ -50,4 +52,9 @@ val DogeNavigation = listOf(
         text = "ilan ekle",
         icon = Icons.Filled.Edit
     ),
+    DogeRoute(
+        path = DogeRoutes.NOTIF_ROUTE,
+        text = "bildirimler",
+        icon = Icons.Filled.Email
+    )
 )
