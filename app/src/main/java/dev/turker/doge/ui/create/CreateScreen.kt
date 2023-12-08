@@ -4,12 +4,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -19,10 +19,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
 import dev.turker.doge.R
 import dev.turker.doge.data.PostRepository
 import dev.turker.doge.model.PostCreate
@@ -83,12 +85,17 @@ fun CreateScreen(navActions: DogeNavigationActions) {
                 Text(stringResource(R.string.create_photo))
             }
             if (bitmap != null) {
-                Image(
-                    bitmap = bitmap!!.asImageBitmap(),
-                    contentDescription = "",
+                AsyncImage(
+                    ImageRequest.Builder(LocalContext.current)
+                        .data(bitmap)
+                        .crossfade(true)
+                        .transformations(CircleCropTransformation())
+                        .build(),
+                    "",
                     modifier = Modifier
                         .width(64.dp)
                         .height(64.dp)
+                        .padding(end = 16.dp)
                 )
             }
         }
