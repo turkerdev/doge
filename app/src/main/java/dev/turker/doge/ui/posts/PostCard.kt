@@ -1,69 +1,105 @@
 package dev.turker.doge.ui.posts
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import dev.turker.doge.model.Post
-import dev.turker.doge.ui.theme.Primary
 
 @Composable
 fun PostCard(post: Post, onPostClick: () -> Unit) {
-
-    Card(
-        colors = CardDefaults.cardColors(
-            containerColor = Primary,
-            contentColor = Color.Black
-        ),
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp)
+            .padding(8.dp)
             .clickable(onClick = onPostClick)
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier.padding(10.dp)
+
+        Card(
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.Transparent,
+
+            ),
+            modifier = Modifier
+                .width(75.dp)
+                .height(75.dp)
+                .padding(end = 16.dp),
+
+
         ) {
-            Row {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(4.dp),
+                contentAlignment = Alignment.Center
+            ) {
                 AsyncImage(
                     ImageRequest.Builder(LocalContext.current)
                         .data("https://xxctovzmgkwnmxgbzysp.supabase.co/storage/v1/object/public/${post.dogPhoto}")
                         .crossfade(true)
                         .transformations(CircleCropTransformation())
                         .build(),
-                    "",
-                    modifier = Modifier
-                        .width(64.dp)
-                        .height(64.dp)
-                        .padding(end = 16.dp),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize()
                 )
-                Column {
-                    Text(
-                        text = post.dogName,
-                    )
-                    Text(
-                        text = post.dogRace,
-                    )
-                }
             }
-            Text(
-                text = post.description,
-            )
+        }
+
+        Card(
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.LightGray, //temsili renk ne koyacağımı bulamadım arka plana göre ayarlarız
+                contentColor = Color.Black
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.Center
+
+            ) {
+                Text(
+                    text = "Adım : ${post.dogName}",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                )
+                Text(
+                    text = "Irkım : ${post.dogRace}",
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "Hakkımda : ${post.description}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
     }
 }

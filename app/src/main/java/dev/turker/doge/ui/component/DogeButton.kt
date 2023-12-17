@@ -27,7 +27,7 @@ fun DogeButton(
                 top = 10.dp,
                 bottom = 10.dp
             ),
-        colors = ButtonDefaults.buttonColors(contentColor = Color.Black, containerColor = backgroundColor),
+        colors = ButtonDefaults.buttonColors(contentColor = Color.White, containerColor = backgroundColor),
         onClick = onClick,
         content = content)
 }

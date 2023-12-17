@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -55,6 +56,6 @@ val DogeNavigation = listOf(
     DogeRoute(
         path = DogeRoutes.NOTIF_ROUTE,
         text = "bildirimler",
-        icon = Icons.Filled.Email
+        icon = Icons.Filled.Notifications
     )
 )

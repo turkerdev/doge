@@ -7,10 +7,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,7 +19,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -44,9 +47,7 @@ fun CreateScreen(navActions: DogeNavigationActions) {
     var isim by remember { mutableStateOf("") }
     var tur by remember { mutableStateOf("") }
     var aciklama by remember { mutableStateOf("") }
-    var bitmap by remember {
-        mutableStateOf<Bitmap?>(null)
-    }
+    var bitmap by remember { mutableStateOf<Bitmap?>(null) }
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -74,49 +75,73 @@ fun CreateScreen(navActions: DogeNavigationActions) {
         navActions.navigateTo(DogeRoutes.POST_ROUTE.replace("{id}", post.id.toString()))
     }
 
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
         Row(
             modifier = Modifier
-                .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            DogeButton(onClick = {
-                launcher.launch("image/*")
-            }) {
+            DogeButton(onClick = { launcher.launch("image/*") }) {
                 Text(stringResource(R.string.create_photo))
             }
-            if (bitmap != null) {
+
+            bitmap?.let {
                 AsyncImage(
                     ImageRequest.Builder(LocalContext.current)
                         .data(bitmap)
                         .crossfade(true)
                         .transformations(CircleCropTransformation())
                         .build(),
-                    "",
+                    contentDescription = null,
                     modifier = Modifier
-                        .width(64.dp)
-                        .height(64.dp)
+                        .size(64.dp)
                         .padding(end = 16.dp)
+                        .clip(CircleShape)
                 )
             }
         }
+
         DogeTextField(
-            placeholder = stringResource(R.string.create_dogName),
             value = isim,
-            onValueChange = { isim = it }
+            onValueChange = { isim = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+            placeholder = stringResource(R.string.create_dogName)
+
         )
         DogeTextField(
-            placeholder = stringResource(R.string.create_dogRace),
             value = tur,
-            onValueChange = { tur = it }
+            onValueChange = { tur = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+            placeholder = stringResource(R.string.create_dogRace),
+
         )
         DogeTextField(
-            placeholder = stringResource(R.string.create_note),
             value = aciklama,
-            onValueChange = { aciklama = it }
+            onValueChange = { aciklama = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
+            placeholder = stringResource(R.string.create_note)
+
         )
+
         DogeButton(
-            onClick = { ekle() })
-        {
+            onClick = { ekle() },
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
             Text(stringResource(R.string.create_send))
         }
     }
