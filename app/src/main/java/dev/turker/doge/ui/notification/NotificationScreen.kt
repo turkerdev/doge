@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dev.turker.doge.data.CommsRepository
 import dev.turker.doge.supabaseClient
 import dev.turker.doge.ui.DogeNavigationActions
+import dev.turker.doge.ui.DogeRoutes
 import io.github.jan.supabase.gotrue.gotrue
 import kotlinx.coroutines.runBlocking
 
@@ -27,7 +30,10 @@ fun NotificationScreen(navActions: DogeNavigationActions) {
         modifier = Modifier.padding(8.dp, 0.dp)
     ) {
         items(messages) {
-            NotificationCard(comms = it, onPostClick = {})
+            NotificationCard(comms = it, onPostClick = {
+                navActions.navigateTo(DogeRoutes.POST_ROUTE.replace("{id}", it.post.toString()))
+            })
+            Divider(color = Color.Black)
         }
     }
 }
