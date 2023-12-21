@@ -34,12 +34,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.turker.doge.R
 import dev.turker.doge.data.AuthRepository
+import dev.turker.doge.ui.DogeNavigationActions
 import dev.turker.doge.ui.component.DogeButton
 import dev.turker.doge.ui.component.DogeTextField
 import kotlinx.coroutines.runBlocking
 
 @Composable
-fun AuthScreen() {
+fun AuthScreen(navActions: DogeNavigationActions) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
@@ -110,7 +111,8 @@ fun AuthScreen() {
                 modifier = Modifier
                     .clickable {
                         runBlocking {
-                            AuthRepository().register(email, password)
+                            navActions.navigateTo("auth/signup")
+//                            AuthRepository().register(email, password)
                         }
                     }
                     .padding(start = 4.dp),

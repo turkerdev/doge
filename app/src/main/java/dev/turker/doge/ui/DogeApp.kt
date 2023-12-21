@@ -53,7 +53,7 @@ fun DogeApp() {
         }
 
         Scaffold(bottomBar = {
-            if (!(currentRoute == DogeRoutes.ROOT_ROUTE || currentRoute == DogeRoutes.AUTH_ROUTE)) {
+            if (!(currentRoute == DogeRoutes.ROOT_ROUTE || currentRoute == DogeRoutes.AUTH_ROUTE || currentRoute == DogeRoutes.SIGNUP_ROUTE)) {
                 NavigationBar(containerColor = SurfaceContainer) {
                     DogeNavigation.forEach { route ->
                         NavigationBarItem(

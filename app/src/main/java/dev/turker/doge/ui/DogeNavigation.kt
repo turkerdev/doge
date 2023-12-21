@@ -2,7 +2,6 @@ package dev.turker.doge.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -12,6 +11,7 @@ import androidx.navigation.NavHostController
 object DogeRoutes {
     const val ROOT_ROUTE = "root"
     const val AUTH_ROUTE = "auth"
+    const val SIGNUP_ROUTE = "auth/signup"
     const val POSTS_ROUTE = "posts"
     const val POST_ROUTE = "post/{id}"
     const val COMM_ROUTE = "comm/{id}"

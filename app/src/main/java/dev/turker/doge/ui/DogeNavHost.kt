@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dev.turker.doge.ui.auth.AuthScreen
+import dev.turker.doge.ui.auth.SignupScreen
 import dev.turker.doge.ui.comm.CommScreen
 import dev.turker.doge.ui.create.CreateScreen
 import dev.turker.doge.ui.notification.NotificationScreen
@@ -19,7 +20,10 @@ fun DogeNavHost(navController: NavHostController, navActions: DogeNavigationActi
     ) {
         composable(DogeRoutes.ROOT_ROUTE) {}
         composable(DogeRoutes.AUTH_ROUTE) {
-            AuthScreen()
+            AuthScreen(navActions)
+        }
+        composable(DogeRoutes.SIGNUP_ROUTE) {
+            SignupScreen()
         }
         composable(DogeRoutes.POSTS_ROUTE) {
             PostsScreen(navActions)
