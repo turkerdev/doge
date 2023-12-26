@@ -57,7 +57,7 @@ fun AuthScreen(navActions: DogeNavigationActions) {
         ) {
 
             Image(
-                painter = painterResource(id = R.drawable.logodog),
+                painter = painterResource(id = R.drawable.logodog2),
                 contentDescription = null,
                 modifier = Modifier
                     .size(250.dp)

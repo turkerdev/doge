@@ -45,17 +45,17 @@ class DogeNavigationActions(private val navController: NavHostController) {
 val DogeNavigation = listOf(
     DogeRoute(
         path = DogeRoutes.POSTS_ROUTE,
-        text = "ilanlar",
+        text = "İlanlar",
         icon = Icons.Filled.Home
     ),
     DogeRoute(
         path = DogeRoutes.CREATE_ROUTE,
-        text = "ilan ekle",
+        text = "İlan Ekle",
         icon = Icons.Filled.Edit
     ),
     DogeRoute(
         path = DogeRoutes.NOTIF_ROUTE,
-        text = "bildirimler",
+        text = "Bildirimler",
         icon = Icons.Filled.Notifications
     )
 )
