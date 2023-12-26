@@ -5,10 +5,7 @@
     <string name="login">Giriş yap</string>
     <string name="register">Kayıt ol</string>
     <string name="post_communicate">İletişime Geç</string>
-    <string name="comm_note"> İsim:\n
-                            Soyisim:\n
-                            Telefon Numarası:\n
-                            E-posta Adresi:</string>
+    <string name="comm_note">Lütfen iletmek istediğin mesaj yaz. \n\nMerak etme iletişim bilgilerini senin yerine biz gönderiyoruz ☺️🤗</string>
     <string name="comm_send">Gönder</string>
     <string name="create_dogName">Köpek Adı</string>
     <string name="create_dogRace">Köpek Cinsi</string>

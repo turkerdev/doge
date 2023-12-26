@@ -1,5 +1,7 @@
 package dev.turker.doge.ui.post
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,10 +16,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -78,27 +86,47 @@ fun PostScreen(navActions: DogeNavigationActions, postId: String) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
+
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(post.dogName, fontSize = 24.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(50.dp))
-            Text(post.dogRace, fontSize = 16.sp)
+            Text("Irk: ${post.dogRace}", fontSize = 16.sp, fontWeight = FontWeight.Bold)
         }
+        Spacer(modifier = Modifier.height(20.dp))
 
 
         Text(
-            text = post.description,
+            buildAnnotatedString {
+                withStyle(
+                    style = SpanStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        textDecoration = TextDecoration.Underline
+                    )
+                ) {
+                    append("Önemli Bilgiler")
+                }
+                append("\n${post.description}")
+            },
             modifier = Modifier
                 .fillMaxWidth()
+                .height(200.dp)
+                .padding(8.dp)
+                .border(1.dp, Color.Black)
                 .padding(8.dp),
             textAlign = TextAlign.Center
         )
+
+
+
+
         if (post.userId != supabaseClient.gotrue.currentUserOrNull()?.id) {
             DogeButton(
                 onClick = { navActions.navigateTo(DogeRoutes.COMM_ROUTE.replace("{id}", postId)) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 50.dp)
+                    .padding(top = 30.dp)
             ) {
                 Text(text = stringResource(R.string.post_communicate))
             }

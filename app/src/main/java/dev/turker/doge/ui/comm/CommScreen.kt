@@ -50,7 +50,7 @@ fun CommScreen(navActions: DogeNavigationActions, postId: String) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "İletişim Bilgileri",
+            text = "Köpeğin Sahibi İle İletişime Geç",
             style = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
