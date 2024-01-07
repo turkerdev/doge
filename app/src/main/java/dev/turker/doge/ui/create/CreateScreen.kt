@@ -2,6 +2,7 @@ package dev.turker.doge.ui.create
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -60,6 +61,26 @@ fun CreateScreen(navActions: DogeNavigationActions) {
     }
 
     fun ekle() {
+        if (isim.isEmpty()) {
+            Toast.makeText(ctx, "İsim boş bırakılamaz", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (tur.isEmpty()) {
+            Toast.makeText(ctx, "Tür boş bırakılamaz", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (aciklama.isEmpty()) {
+            Toast.makeText(ctx, "Açıklama boş bırakılamaz", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (bitmap == null) {
+            Toast.makeText(ctx, "Fotoğraf boş bırakılamaz", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val post = runBlocking {
             val imagePath = PostRepository().uploadImage(bitmap!!)
             PostRepository().createPost(
@@ -126,7 +147,7 @@ fun CreateScreen(navActions: DogeNavigationActions) {
                 .padding(bottom = 8.dp),
             placeholder = stringResource(R.string.create_dogRace),
 
-        )
+            )
         DogeTextField(
             value = aciklama,
             onValueChange = { aciklama = it },

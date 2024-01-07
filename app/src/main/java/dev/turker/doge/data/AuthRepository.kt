@@ -1,5 +1,6 @@
 package dev.turker.doge.data
 
+import android.content.Context
 import android.graphics.Bitmap
 import dev.turker.doge.model.AuthCreate
 import dev.turker.doge.supabaseClient
@@ -12,16 +13,11 @@ import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
 class AuthRepository {
-    suspend fun login(emailz: String, passwordz: String) {
+    suspend fun login(emailz: String, passwordz: String, ctx: Context) {
         return withContext(Dispatchers.IO) {
-            try {
-                supabaseClient.gotrue.loginWith(Email) {
-                    email = emailz
-                    password = passwordz
-                }
-                Result.success("")
-            } catch (e: Exception) {
-                Result.failure(e)
+            supabaseClient.gotrue.loginWith(Email) {
+                email = emailz
+                password = passwordz
             }
         }
     }

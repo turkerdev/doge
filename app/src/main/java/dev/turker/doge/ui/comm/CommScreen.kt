@@ -68,7 +68,8 @@ fun CommScreen(navActions: DogeNavigationActions, postId: String) {
             value = text,
             onValueChange = { text = it },
             placeholder = stringResource(R.string.comm_note),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(300.dp)
         )
         Spacer(
